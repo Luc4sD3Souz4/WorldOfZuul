@@ -15,10 +15,12 @@
 public class Room 
 {
     public String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
+    private Room northExit;
+    private Room southExit;
+    private Room eastExit;
+    private Room westExit;
+    private Room upExit;
+    private Room downExit;
 
     /**
      * Create a room described "description". Initially, it has
@@ -30,6 +32,65 @@ public class Room
     {
         this.description = description;
     }
+    
+    public Room getExit (String direction)
+    {
+    	if(direction.equals("norte")) {
+    		return northExit;
+    	}
+    	
+    	if(direction.equals("sul")) {
+    		return southExit;
+    	}
+    	
+    	if(direction.equals("leste")) {
+    		return eastExit;
+    	}
+    	
+    	if(direction.equals("oeste")) {
+    		return westExit;
+    	}
+    	
+    	if(direction.equals("cima")) {
+    		return upExit;
+    	}
+    	
+    	if(direction.equals("baixo")) {
+    		return downExit;
+    	}
+    	
+    	else {
+    		return null;
+    	}
+    }
+    
+    public String getExitString (String currentRoom) {
+    	String saida = "Saídas: ";
+        if(northExit != null) {
+        	saida += "norte ";
+        }
+        
+        if(eastExit != null) {
+        	saida += "leste ";
+        }
+        
+        if(southExit != null) {
+        	saida += "sul ";
+        }
+        
+        if(westExit != null) {
+        	saida += "oeste ";
+        }
+        
+        if(upExit != null) {
+        	saida += "cima ";
+        }
+        
+        if(downExit != null) {
+        	saida += "baixo ";
+        }
+    	return saida;
+    }
 
     /**
      * Define the exits of this room.  Every direction either leads
@@ -39,7 +100,7 @@ public class Room
      * @param south The south exit.
      * @param west The west exit.
      */
-    public void setExits(Room north, Room east, Room south, Room west) 
+    public void setExits(Room north, Room east, Room south, Room west, Room up, Room down) 
     {
         if(north != null)
             northExit = north;
@@ -49,6 +110,10 @@ public class Room
             southExit = south;
         if(west != null)
             westExit = west;
+        if(up != null)
+            upExit = up;
+        if(down != null)
+            downExit = down;
     }
 
     /**
